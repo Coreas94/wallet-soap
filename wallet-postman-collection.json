@@ -48,7 +48,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"documento\": \"12345678\", \"celular\": \"1234567890\", \"valor\": 50}"
+					"raw": "{\"documento\": \"050209088\", \"celular\": \"77889923\", \"valor\": 50}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/wallet/recargar",
@@ -78,7 +78,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"documento\": \"050209086\", \n    \"celular\": \"77889911\", \n    \"monto\": 25\n}"
+					"raw": "{\n    \"documento\": \"050209088\", \n    \"celular\": \"77889923\", \n    \"monto\": 25\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/wallet/pagar",
@@ -132,7 +132,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/wallet/consultar?documento=12345678&celular=1234567890",
+					"raw": "http://localhost:3000/api/wallet/consultar?documento=050209088&celular=77889923",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -146,11 +146,11 @@
 					"query": [
 						{
 							"key": "documento",
-							"value": "12345678"
+							"value": "050209088"
 						},
 						{
 							"key": "celular",
-							"value": "1234567890"
+							"value": "77889923"
 						}
 					]
 				}
