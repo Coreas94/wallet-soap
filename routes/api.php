@@ -15,17 +15,10 @@ use App\Http\Controllers\WalletSoapController;
 |e
 */
 
-//Registrar cliente
-Route::post('wallet/registro', [WalletSoapController::class, 'registroCliente']);
-
-// Recarga de billetera
-Route::post('wallet/recarga', [WalletSoapController::class, 'recargaBilletera']);
-
-// Iniciar pago
-Route::post('wallet/pagar', [WalletSoapController::class, 'pagar']);
-
-// Confirmar pago
-Route::post('wallet/confirmar', [WalletSoapController::class, 'confirmarPago']);
-
-// Consultar saldo
-Route::get('wallet/consultar', [WalletSoapController::class, 'consultarSaldo']);
+Route::prefix('wallet')->controller(WalletSoapController::class)->group(function () {
+   Route::post('registro', 'registroCliente');      // Registrar cliente
+   Route::post('recarga', 'recargaBilletera');      // Recarga de billetera
+   Route::post('pagar', 'pagar');                   // Iniciar pago
+   Route::post('confirmar', 'confirmarPago');       // Confirmar pago
+   Route::get('consultar', 'consultarSaldo');       // Consultar saldo
+});

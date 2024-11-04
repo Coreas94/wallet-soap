@@ -8,6 +8,10 @@ use App\Services\WalletService;
 use App\Http\Requests\RegisterCustomerRequest;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\BalanceRequest;
+use App\Http\Requests\RechargeWalletRequest;
+use App\Http\Requests\MakePaymentRequest;
+use App\Http\Requests\ConfirmPaymentRequest;
 
 class WalletSoapController extends Controller
 {
@@ -26,44 +30,44 @@ class WalletSoapController extends Controller
       return response()->json($response);
    }
 
-   public function recargaBilletera(Request $request)
+   public function recargaBilletera(RechargeWalletRequest $request)
    {
-      $documento = $request->input('documento');
-      $celular = $request->input('celular');
-      $valor = $request->input('valor');
-
-      $response = $this->walletService->rechargeWallet($documento, $celular, $valor);
+      $response = $this->walletService->rechargeWallet(
+         $request->input('documento'),
+         $request->input('celular'),
+         $request->input('valor')
+      );
 
       return response()->json($response);
    }
 
-   public function pagar(Request $request)
+   public function pagar(MakePaymentRequest $request)
    {
-      $documento = $request->input('documento');
-      $celular = $request->input('celular');
-      $monto = $request->input('monto');
-
-      $response = $this->walletService->initiatePayment($documento, $celular, $monto);
+      $response = $this->walletService->initiatePayment(
+         $request->input('documento'),
+         $request->input('celular'),
+         $request->input('monto')
+      );
 
       return response()->json($response);
    }
 
-   public function confirmarPago(Request $request)
+   public function confirmarPago(ConfirmPaymentRequest $request)
    {
-      $sessionId = $request->input('sessionId');
-      $token = $request->input('token');
-
-      $response = $this->walletService->confirmPayment($sessionId, $token);
+      $response = $this->walletService->confirmPayment(
+         $request->input('sessionId'),
+         $request->input('token')
+      );
 
       return response()->json($response);
    }
 
-   public function consultarSaldo(Request $request)
+   public function consultarSaldo(BalanceRequest $request)
    {
-      $documento = $request->input('documento');
-      $celular = $request->input('celular');
-
-      $response = $this->walletService->getBalance($documento, $celular);
+      $response = $this->walletService->getBalance(
+         $request->input('documento'),
+         $request->input('celular')
+      );
 
       return response()->json($response);
    }
